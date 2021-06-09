@@ -1,0 +1,1 @@
+Was struggling to get an action upon submission, but the solution was to change input type (submit on line 114) to button > see playerQuestionOne() near the end 

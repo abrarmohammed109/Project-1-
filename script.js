@@ -78,34 +78,113 @@ const beginGame = async () => {
         const data = await response.json()
         console.log(data)
 
-        for(i=0;i<data.results.length;i++){             //storing questions for my class via for loop, since I grabbed 10 questions from API
-            me.Q_A.questions.push(data.results[i].question)           //^^ ALTERNATIVE: created an object so i can store BOTH questions and answers in the same location and access them from one point >>> this one is pushing all the qustions form the API to the object
-            me.Q_A.answers.push(data.results[i].incorrect_answers,data.results[i].correct_answer)             // ^^This is storing all the answers per respective question to the same object the question is located
-        }
-        // console.log(me.Q_A.questions)
-        console.log(me.Q_A.answers)
-
-        me.Q_A.answers[0].push(me.Q_A.answers[1])
-        console.log(me.Q_A.answers[0])
-
-        // const iterator = me.Q_A.answers[0].values()          //individually extracts the values and displays them to the console
-        // for (const value of iterator ){
-        //     console.log(value)
-        // }
-
-        const gameHTML = `<h2>${me.Q_A.questions[0]}</h2>
-        <input type="radio" name="choice1" value="choice1">
-        <label id="choice1" for="choice1">${me.Q_A.answers[0][0]}</label><br>
-        <input type="radio" name="choice2" value="choice2">
-        <label id="choice2" for="choice2">${me.Q_A.answers[0][1]}</label><br>
-        <input type="radio" name="choice3" value="choice3">
-        <label id="choice3" for="choice3">${me.Q_A.answers[0][2]}</label><br>
-        <input type="radio" name="choice4" value="choice4">
-        <label id="choice4" for="choice4">${me.Q_A.answers[0][3]}</label>` 
-        mainGame.innerHTML = gameHTML
+        playerQuestionOne(data)
+       
     } catch (err){
         console.error(err)
     }
 }
+
+const playerQuestionOne = (data) => {
+
+    for(i=0;i<data.results.length;i++){             //storing questions for my class via for loop, since I grabbed 10 questions from API
+        me.Q_A.questions.push(data.results[i].question)           //^^ ALTERNATIVE: created an object so i can store BOTH questions and answers in the same location and access them from one point >>> this one is pushing all the qustions form the API to the object
+        me.Q_A.answers.push(data.results[i].incorrect_answers,data.results[i].correct_answer)             // ^^This is storing all the answers per respective question to the same object the question is located
+    }
+    // console.log(me.Q_A.questions)
+    console.log(me.Q_A.answers)
+
+    me.Q_A.answers[0].push(me.Q_A.answers[1])
+    console.log(me.Q_A.answers[0])
+
+    // const iterator = me.Q_A.answers[0].values()          //individually extracts the values and displays them to the console
+    // for (const value of iterator ){
+    //     console.log(value)
+    // }
+
+    const gameHTML = `<h1 id='score'> ${me.name}'s turn. SCORE: ${me.score}</h1>
+    <h2>${me.Q_A.questions[0]}</h2>
+    <form id='form'>
+    <input id='option1' type="radio" name="choice" value="">${me.Q_A.answers[0][0]}<br>
+    <input id='option2' type="radio" name="choice" value="">${me.Q_A.answers[0][1]}<br>
+    <input id='option3' type="radio" name="choice" value="choice3">${me.Q_A.answers[0][2]}<br>
+    <input id='option4' type="radio" name="choice" value="choice4">${me.Q_A.answers[0][3]}<br>
+    <button type='button' onclick="checkAnswer()"> LESGOOOO </button>
+    </form>`
+    mainGame.innerHTML = gameHTML
+   
+
+
+}
+
+const checkAnswer = () => {
+    if(document.getElementById('option1').checked || document.getElementById('option2').checked || document.getElementById('option3').checked){
+        alert('incorrect')
+        me.decreaseScore()
+
+        const score = document.getElementById('score')
+        const updateScore = document.createElement('h1')
+        updateScore.innerHTML = `${me.name}'s turn. SCORE: ${me.score}`
+        score.parentNode.replaceChild(updateScore,score)
+
+        //playerQuestionTwo()
+
+    } else if (document.getElementById('option4').checked){
+        console.log('correct!')
+        me.increaseScore()
+
+        const score = document.getElementById('score')
+        const updateScore = document.createElement('h1')
+        updateScore.innerHTML = `${me.name}'s turn. SCORE: ${me.score}`
+        score.parentNode.replaceChild(updateScore,score)
+        console.log(me.score)
+
+        //playerQuestionTwo()
+    }
+}
+
+/* ⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆ END OF QUESTION ONE ⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆/
+
+
+
+/* ⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇ QUESTION 2 ⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 button.addEventListener('click',beginGame)

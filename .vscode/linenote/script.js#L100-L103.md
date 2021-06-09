@@ -1,0 +1,2 @@
+Resource on how to take array values from an array and display them in javascript (see commented code in playerQuestionOne() before all the innerHTML parts):
+https://www.geeksforgeeks.org/javascript-array-values/
