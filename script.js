@@ -104,26 +104,37 @@ const playerQuestionOne = (data) => {
 
     const gameHTML = `<h1 id='score'> ${me.name}'s turn. SCORE: ${me.score}</h1>
     <h2 id='question'>${me.Q_A.questions[0]}</h2>
-    <input id='option1' type="radio" name="choice1" value="choice1">
+    <div id='section1'>
+    <input id='option1' type="radio" name="choice" value="">
     <label id="choice1" for="choice1">${me.Q_A.answers[0][0]}</label><br>
+    </div>
+    <div id='section2'>
     <input id='option2' class ='next-question' type="radio" name="choice" value="">
     <label id="choice2" for="choice1">${me.Q_A.answers[0][1]}</label><br>
-    <input id='option3' class ='next-question' type="radio" name="choice" value="choice3">
+    </div>
+    <div id='section3'>
+    <input id='option3' class ='next-question' type="radio" name="choice" value="">
     <label id="choice3" for="choice1">${me.Q_A.answers[0][2]}</label><br>
-    <input id='option4' class ='next-question' type="radio" name="choice" value="choice4">
+    </div>
+    <div id='section4'>
+    <input id='option4' class ='next-question' type="radio" name="choice" value="">
     <label id="choice4" for="choice1">${me.Q_A.answers[0][3]}</label><br>
-    <button id='submit' type='button' onclick="checkAnswer()"> LESGOOOO </button>`
+    </div>
+    <button id='submit' type='button'> LESGOOOO </button>`
 
     mainGame.innerHTML = gameHTML
-  
-    // <input id='option1' class ='next-question' type="radio" name="choice" value="">${me.Q_A.answers[0][0]}<br>
 
+    const submitButton = document.getElementById('submit')
+    submitButton.addEventListener('click', checkAnswer)
+  
+    // onclick="checkAnswer()"
 
 }
 
 const checkAnswer = () => {
-    if(document.getElementById('option1').checked || document.getElementById('option2').checked || document.getElementById('option3').checked){
-        alert('incorrect')
+    if(document.getElementById('option1').checked){
+       
+        document.getElementById('section1').style.border = '3px solid red'
         me.decreaseScore()
 
         const score = document.getElementById('score')
@@ -134,8 +145,29 @@ const checkAnswer = () => {
 
         playerQuestionTwo()
 
+    } else if (document.getElementById('option2').checked){
+
+        document.getElementById('section2').style.border = '3px solid red'
+        me.decreaseScore()
+
+        const score = document.getElementById('score')
+        const updateScore = document.createElement('h1')
+        updateScore.setAttribute('id','score')
+        updateScore.innerHTML = `${me.name}'s turn. SCORE: ${me.score}`
+        score.parentNode.replaceChild(updateScore,score)
+    } else if (document.getElementById('option3').checked){
+
+        document.getElementById('section3').style.border = '3px solid red'
+        me.decreaseScore()
+
+        const score = document.getElementById('score')
+        const updateScore = document.createElement('h1')
+        updateScore.setAttribute('id','score')
+        updateScore.innerHTML = `${me.name}'s turn. SCORE: ${me.score}`
+        score.parentNode.replaceChild(updateScore,score)
     } else if (document.getElementById('option4').checked){
-        console.log('correct!')
+        
+        document.getElementById('section4').style.border = '3px solid green'
         me.increaseScore()
 
         const score = document.getElementById('score')
@@ -158,6 +190,8 @@ const checkAnswer = () => {
 const playerQuestionTwo = () => {
     console.log(me.score)
     
+    // document.getElementById('main-game').style.border = '3px solid black'
+
     const questionreplace = document.getElementById('question') //replacing previous question with next question 
     const updateQuestion = document.createElement('h2')
     updateQuestion.innerHTML = me.Q_A.questions[1]   //replace the index here with the next number (max 9 or 19)
@@ -213,23 +247,47 @@ const playerQuestionTwo = () => {
 
 const checkAnswerTwo = () => {
 
-    if(document.getElementById('option1').checked || document.getElementById('option2').checked || document.getElementById('option3').checked){
-        alert('incorrect')
+    if(document.getElementById('option1').checked){
+       
+        document.getElementById('section1').style.border = '3px solid red'
         me.decreaseScore()
 
         const score = document.getElementById('score')
         const updateScore = document.createElement('h1')
+        updateScore.setAttribute('id','score')
         updateScore.innerHTML = `${me.name}'s turn. SCORE: ${me.score}`
         score.parentNode.replaceChild(updateScore,score)
 
         playerQuestionThree()
 
+    } else if (document.getElementById('option2').checked){
+
+        document.getElementById('section2').style.border = '3px solid red'
+        me.decreaseScore()
+
+        const score = document.getElementById('score')
+        const updateScore = document.createElement('h1')
+        updateScore.setAttribute('id','score')
+        updateScore.innerHTML = `${me.name}'s turn. SCORE: ${me.score}`
+        score.parentNode.replaceChild(updateScore,score)
+    } else if (document.getElementById('option3').checked){
+
+        document.getElementById('section3').style.border = '3px solid red'
+        me.decreaseScore()
+
+        const score = document.getElementById('score')
+        const updateScore = document.createElement('h1')
+        updateScore.setAttribute('id','score')
+        updateScore.innerHTML = `${me.name}'s turn. SCORE: ${me.score}`
+        score.parentNode.replaceChild(updateScore,score)
     } else if (document.getElementById('option4').checked){
-        console.log('correct!')
+        
+        document.getElementById('section4').style.border = '3px solid green'
         me.increaseScore()
 
         const score = document.getElementById('score')
         const updateScore = document.createElement('h1')
+        updateScore.setAttribute('id','score')
         updateScore.innerHTML = `${me.name}'s turn. SCORE: ${me.score}`
         score.parentNode.replaceChild(updateScore,score)
         console.log(me.score)
@@ -242,7 +300,6 @@ const checkAnswerTwo = () => {
 const playerQuestionThree = () => {
     console.log('NEXT ROUND')
 }
-
 
 
 
