@@ -25,6 +25,8 @@
 6. can later scale the number of questions to include (BUT will be a lot of lines of code)
 
 7. Have opponent display beneath player 1s instead of replacing it
+
+8. function to go to next round (would be a copy/paste of previous code > 3 rounds max)
 */
 
 
@@ -154,7 +156,11 @@ const checkAnswer = () => {
         updateScore.innerHTML = `${me.name}'s turn. SCORE: ${me.score}`
         score.parentNode.replaceChild(updateScore,score)
 
-        playerQuestionTwo()
+        // playerQuestionTwo()
+
+        setTimeout(()=> {
+            playerQuestionTwo();
+         }, 1000);
 
     } else if (document.getElementById('option2').checked){
 
@@ -167,7 +173,11 @@ const checkAnswer = () => {
         updateScore.innerHTML = `${me.name}'s turn. SCORE: ${me.score}`
         score.parentNode.replaceChild(updateScore,score)
 
-        playerQuestionTwo()
+        // playerQuestionTwo()
+
+        setTimeout(()=> {
+            playerQuestionTwo();
+         }, 1000);
 
     } else if (document.getElementById('option3').checked){
 
@@ -180,7 +190,11 @@ const checkAnswer = () => {
         updateScore.innerHTML = `${me.name}'s turn. SCORE: ${me.score}`
         score.parentNode.replaceChild(updateScore,score)
 
-        playerQuestionTwo()
+        // playerQuestionTwo()
+
+        setTimeout(()=> {
+            playerQuestionTwo();
+         }, 1000);
 
     } else if (document.getElementById('option4').checked){
         
@@ -194,7 +208,11 @@ const checkAnswer = () => {
         score.parentNode.replaceChild(updateScore,score)
         console.log(me.score)
 
-        playerQuestionTwo()
+        // playerQuestionTwo()
+
+        setTimeout(()=> {
+            playerQuestionTwo();
+         }, 1000);
     }
 }
 
@@ -280,7 +298,13 @@ const checkAnswerTwo = () => {
         updateScore.innerHTML = `${me.name}'s turn. SCORE: ${me.score}`
         score.parentNode.replaceChild(updateScore,score)
 
-        opponentQuestionOne()
+        // opponentQuestionOne()
+
+        setTimeout(()=> {
+            opponentQuestionOne();
+         }, 1000);
+
+       
 
     } else if (document.getElementById('option2').checked){
 
@@ -293,7 +317,11 @@ const checkAnswerTwo = () => {
         updateScore.innerHTML = `${me.name}'s turn. SCORE: ${me.score}`
         score.parentNode.replaceChild(updateScore,score)
 
-        opponentQuestionOne()
+        // opponentQuestionOne()
+
+        setTimeout(()=> {
+            opponentQuestionOne();
+         }, 1000);
 
     } else if (document.getElementById('option3').checked){
 
@@ -306,7 +334,11 @@ const checkAnswerTwo = () => {
         updateScore.innerHTML = `${me.name}'s turn. SCORE: ${me.score}`
         score.parentNode.replaceChild(updateScore,score)
 
-        opponentQuestionOne()
+        // opponentQuestionOne()
+        setTimeout(()=> {
+            opponentQuestionOne();
+         }, 1000);
+
     } else if (document.getElementById('option4').checked){
         
         document.getElementById('section4').style.border = '3px solid green'
@@ -319,7 +351,10 @@ const checkAnswerTwo = () => {
         score.parentNode.replaceChild(updateScore,score)
         console.log(me.score)
 
-        opponentQuestionOne()
+        // opponentQuestionOne()
+        setTimeout(()=> {
+            opponentQuestionOne();
+         }, 1000);
     }
     
 }
@@ -369,20 +404,216 @@ const opponentQuestionOne = () => {
     updatedAnswerChoice4.innerHTML = me.Q_A.answers[5]  //!replace second index with next number; on the 4th choice replace first index with next number and no second index
     answerChoiceReplace4.parentNode.replaceChild(updatedAnswerChoice4,answerChoiceReplace4)
     
-    const previousSubmit = document.getElementById('new-submit')
-    const section = document.getElementById('main-game')
-    previousSubmit.parentNode.removeChild(previousSubmit)
-    const newButton = document.createElement('button')
-    newButton.setAttribute('id','new-Submit')
-    newButton.innerHTML = `SUBMIT`
-    section.appendChild(newButton)
+    // const previousSubmit = document.getElementById('new-submit')
+    // const section = document.getElementById('main-game')
+    // previousSubmit.parentNode.removeChild(previousSubmit)
+    // const newButton = document.createElement('button')
+    // newButton.setAttribute('id','new-Submit2')
+    // newButton.innerHTML = `YOU GOT THIS`
+    // section.appendChild(newButton)
 
-    document.getElementById('new-Submit').addEventListener('click',checkAnswerTwo)
+    document.getElementById('new-Submit').addEventListener('click',checkOpponentAnswerOne)
 
-   
 
 
 }
+
+const checkOpponentAnswerOne = () => {
+
+    if(document.getElementById('option1').checked){
+       
+        document.getElementById('section1').style.border = '3px solid red'
+        opponent.decreaseScore()
+
+        const score = document.getElementById('score')
+        const updateScore = document.createElement('h1')
+        updateScore.setAttribute('id','score')
+        updateScore.innerHTML = `${opponent.name}'s turn. SCORE: ${opponent.score}`
+        score.parentNode.replaceChild(updateScore,score)
+
+        // opponentQuestionOne()
+
+        setTimeout(()=> {
+            opponentQuestionTwo();
+         }, 1000);
+
+       
+
+    } else if (document.getElementById('option2').checked){
+
+        document.getElementById('section2').style.border = '3px solid red'
+        opponent.decreaseScore()
+
+        const score = document.getElementById('score')
+        const updateScore = document.createElement('h1')
+        updateScore.setAttribute('id','score')
+        updateScore.innerHTML = `${opponent.name}'s turn. SCORE: ${opponent.score}`
+        score.parentNode.replaceChild(updateScore,score)
+
+        // opponentQuestionOne()
+
+        setTimeout(()=> {
+            opponentQuestionTwo();
+         }, 1000);
+
+    } else if (document.getElementById('option3').checked){
+
+        document.getElementById('section3').style.border = '3px solid red'
+        opponent.decreaseScore()
+
+        const score = document.getElementById('score')
+        const updateScore = document.createElement('h1')
+        updateScore.setAttribute('id','score')
+        updateScore.innerHTML = `${opponent.name}'s turn. SCORE: ${opponent.score}`
+        score.parentNode.replaceChild(updateScore,score)
+
+        // opponentQuestionOne()
+        setTimeout(()=> {
+            opponentQuestionTwo();
+         }, 1000);
+
+    } else if (document.getElementById('option4').checked){
+        
+        document.getElementById('section4').style.border = '3px solid green'
+        opponent.increaseScore()
+
+        const score = document.getElementById('score')
+        const updateScore = document.createElement('h1')
+        updateScore.setAttribute('id','score')
+        updateScore.innerHTML = `${opponent.name}'s turn. SCORE: ${opponent.score}`
+        score.parentNode.replaceChild(updateScore,score)
+        console.log(me.score)
+
+        // opponentQuestionOne()
+        setTimeout(()=> {
+            opponentQuestionTwo();
+         }, 1000);
+    }
+}
+
+function opponentQuestionTwo () {
+    console.log('WOOOO')
+
+    const questionreplace = document.getElementById('question') //!replacing previous question with next question 
+    const updateQuestion = document.createElement('h2')
+    updateQuestion.setAttribute('id','question')
+    updateQuestion.innerHTML = me.Q_A.questions[3]   //!replace the index here with the next number (max 9 or 19)
+    questionreplace.parentNode.replaceChild(updateQuestion,questionreplace)
+
+    const answerChoiceReplace1 = document.getElementById('choice1')  //!replacing previous answers with next answers respective of the above replacing question
+    const updatedAnswerChoice1 = document.createElement('label')
+    updatedAnswerChoice1.setAttribute('id','choice1')
+    updatedAnswerChoice1.innerHTML = me.Q_A.answers[6][0]  //!replace second index with next number; on the 4th choice replace first index with next number and no second index
+    // answerChoiceReplace1.appendChild(updatedAnswerChoice1)
+    answerChoiceReplace1.parentNode.replaceChild(updatedAnswerChoice1,answerChoiceReplace1)
+    
+    const answerChoiceReplace2 = document.getElementById('choice2')  //!replacing previous answers with next answers respective of the above replacing question
+    const updatedAnswerChoice2 = document.createElement('label')
+    updatedAnswerChoice2.setAttribute('id','choice2')
+    updatedAnswerChoice2.innerHTML = me.Q_A.answers[6][1]  //!replace second index with next number; on the 4th choice replace first index with next number and no second index
+    answerChoiceReplace2.parentNode.replaceChild(updatedAnswerChoice2,answerChoiceReplace2)
+
+    const answerChoiceReplace3 = document.getElementById('choice3')  //!replacing previous answers with next answers respective of the above replacing question
+    const updatedAnswerChoice3 = document.createElement('label')
+    updatedAnswerChoice3.setAttribute('id','choice3')
+    updatedAnswerChoice3.innerHTML = me.Q_A.answers[6][2]  //!replace second index with next number; on the 4th choice replace first index with next number and no second index
+    answerChoiceReplace3.parentNode.replaceChild(updatedAnswerChoice3,answerChoiceReplace3)
+    
+    const answerChoiceReplace4 = document.getElementById('choice4')  //!replacing previous answers with next answers respective of the above replacing question
+    const updatedAnswerChoice4 = document.createElement('label')
+    updatedAnswerChoice4.setAttribute('id','choice4') //! 
+    updatedAnswerChoice4.innerHTML = me.Q_A.answers[7]  //!replace second index with next number; on the 4th choice replace first index with next number and no second index
+    answerChoiceReplace4.parentNode.replaceChild(updatedAnswerChoice4,answerChoiceReplace4)
+    
+    // const previousSubmit = document.getElementById('new-submit')
+    // const section = document.getElementById('main-game')
+    // previousSubmit.parentNode.removeChild(previousSubmit)
+    // const newButton = document.createElement('button')
+    // newButton.setAttribute('id','new-Submit2')
+    // newButton.innerHTML = `YOU GOT THIS`
+    // section.appendChild(newButton)
+
+    document.getElementById('new-Submit').addEventListener('click',checkOpponentAnswerTwo)
+
+
+}
+
+const checkOpponentAnswerTwo = () => {
+
+    if(document.getElementById('option1').checked){
+       
+        document.getElementById('section1').style.border = '3px solid red'
+        opponent.decreaseScore()
+
+        const score = document.getElementById('score')
+        const updateScore = document.createElement('h1')
+        updateScore.setAttribute('id','score')
+        updateScore.innerHTML = `${opponent.name}'s turn. SCORE: ${opponent.score}`
+        score.parentNode.replaceChild(updateScore,score)
+
+        // opponentQuestionOne()
+
+        setTimeout(()=> {
+            test();
+         }, 1000);
+
+       
+
+    } else if (document.getElementById('option2').checked){
+
+        document.getElementById('section2').style.border = '3px solid red'
+        opponent.decreaseScore()
+
+        const score = document.getElementById('score')
+        const updateScore = document.createElement('h1')
+        updateScore.setAttribute('id','score')
+        updateScore.innerHTML = `${opponent.name}'s turn. SCORE: ${opponent.score}`
+        score.parentNode.replaceChild(updateScore,score)
+
+        // opponentQuestionOne()
+
+        setTimeout(()=> {
+            test();
+         }, 1000);
+
+    } else if (document.getElementById('option3').checked){
+
+        document.getElementById('section3').style.border = '3px solid red'
+        opponent.decreaseScore()
+
+        const score = document.getElementById('score')
+        const updateScore = document.createElement('h1')
+        updateScore.setAttribute('id','score')
+        updateScore.innerHTML = `${opponent.name}'s turn. SCORE: ${opponent.score}`
+        score.parentNode.replaceChild(updateScore,score)
+
+        // opponentQuestionOne()
+        setTimeout(()=> {
+            test();
+         }, 1000);
+
+    } else if (document.getElementById('option4').checked){
+        
+        document.getElementById('section4').style.border = '3px solid green'
+        opponent.increaseScore()
+
+        const score = document.getElementById('score')
+        const updateScore = document.createElement('h1')
+        updateScore.setAttribute('id','score')
+        updateScore.innerHTML = `${opponent.name}'s turn. SCORE: ${opponent.score}`
+        score.parentNode.replaceChild(updateScore,score)
+
+        // opponentQuestionOne()
+        setTimeout(()=> {
+            test();
+         }, 1000);
+    }
+}
+
+function test () {
+    alert (me.score)
+    alert (opponent.score)
+} 
 
 
 
