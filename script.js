@@ -86,6 +86,8 @@ const opponent = new Opponent ('Player 2')
 
 
 const beginGame = async () => {
+    roundCounter++
+    console.log(`Round: ${roundCounter}`)
     // window.location.href = 'index2.html'
 
     try{
@@ -645,7 +647,6 @@ const finalResults = () => {
 }
 
 const round2 = () => {
-    roundCounter++
     // console.log('round 2... fight!')
 
     // const gameClear = document.getElementById('main-game')
@@ -655,7 +656,7 @@ const round2 = () => {
 
         if(me.score > opponent.score) {
         const displayVictor = document.createElement('section')
-        finalResults.setAttribute('id','victor')
+        displayVictor.setAttribute('id','victor')
         body.appendChild(displayVictor)
 
         const finalHTML = `
@@ -663,10 +664,13 @@ const round2 = () => {
         <button id='play-again'>PLAY AGAIN</button>`
 
         displayVictor.innerHTML = finalHTML
+
+        const playAgain = document.getElementById('play-again')
+        playAgain.addEventListener('click',replay)
         } else if(opponent.score > me.score) {
 
                 const displayVictor = document.createElement('section')
-                finalResults.setAttribute('id','victor')
+                displayVictor.setAttribute('id','victor')
                 body.appendChild(displayVictor)
         
                 const finalHTML = `
@@ -674,10 +678,13 @@ const round2 = () => {
                 <button id='play-again'>PLAY AGAIN</button>`
         
                 displayVictor.innerHTML = finalHTML
+
+                const playAgain = document.getElementById('play-again')
+                playAgain.addEventListener('click',replay)
         } else if (me.score === opponent.score) {
             
                 const displayVictor = document.createElement('section')
-                finalResults.setAttribute('id','victor')
+                displayVictor.setAttribute('id','victor')
                 body.appendChild(displayVictor)
         
                 const finalHTML = `
@@ -685,7 +692,12 @@ const round2 = () => {
                 <button id='play-again'>PLAY AGAIN</button>`
         
                 displayVictor.innerHTML = finalHTML
+
+                const playAgain = document.getElementById('play-again')
+                playAgain.addEventListener('click',replay)
         }  
+
+        
 
     }
     
