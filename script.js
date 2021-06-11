@@ -38,6 +38,7 @@ const API_ENDPOINT = 'https://opentdb.com/api.php?amount=10&type=multiple'
 const body = document.getElementById('body')
 const mainGame = document.getElementById('main-game')
 const button = document.getElementById('button')
+let roundCounter = 0
 
 
 class Me {
@@ -51,11 +52,11 @@ class Me {
     }
 
     increaseScore(){
-        return this.score+=10 
+        return this.score+=50 
     }
 
     decreaseScore(){
-        return this.score-=10
+        return this.score-=50
     }
 
 }
@@ -71,11 +72,11 @@ class Opponent {
     }
 
     increaseScore(){
-        return this.score+=10 
+        return this.score+=50 
     }
 
     decreaseScore(){
-        return this.score-=10
+        return this.score-=50
     }
 }
 
@@ -614,21 +615,21 @@ const finalResults = () => {
     if (me.score > opponent.score) {
     const finalHTML = `
     <h1>${me.name} had ${me.score} points. ${opponent.name} had ${opponent.score} points. ${me.name} wins!</h1>
-    <button id='round2'>ROUND 2</button>
+    <button id='round2'>NEXT ROUND</button>
     <button id='play-again'>PLAY AGAIN</button>`
 
     finalResults.innerHTML = finalHTML
 } else if (opponent.score > me.score) {
     const finalHTML = `
     <h1>${me.name} had ${me.score} points. ${opponent.name} had ${opponent.score} points. ${opponent.name} wins!</h1>
-    <button id='round2'>ROUND 2</button>
+    <button id='round2'>NEXT ROUND</button>
     <button id='play-again'>PLAY AGAIN</button>`
 
     finalResults.innerHTML = finalHTML
 } else if (opponent.score === me.score) {
     const finalHTML = `
     <h1>${me.name} had ${me.score} points. ${opponent.name} had ${opponent.score} points. It's a tie!</h1>
-    <button id='round2'>ROUND 2</button>
+    <button id='round2'>NEXT ROUND</button>
     <button id='play-again'>PLAY AGAIN</button>`
 
     finalResults.innerHTML = finalHTML
@@ -644,12 +645,49 @@ const finalResults = () => {
 }
 
 const round2 = () => {
+    roundCounter++
     // console.log('round 2... fight!')
 
     // const gameClear = document.getElementById('main-game')
     // gameClear.parentNode.removeChild(gameClear)
 
-    // if(me.score === ){}
+    if(roundCounter === 3 ){
+
+        if(me.score > opponent.score) {
+        const displayVictor = document.createElement('section')
+        finalResults.setAttribute('id','victor')
+        body.appendChild(displayVictor)
+
+        const finalHTML = `
+        <h1>ALL 3 ROUNDS HAVE BEEN PLAYED. ${me.name} had ${me.score} points. ${opponent.name} had ${opponent.score} points. ${me.name} wins!</h1>
+        <button id='play-again'>PLAY AGAIN</button>`
+
+        displayVictor.innerHTML = finalHTML
+        } else if(opponent.score > me.score) {
+
+                const displayVictor = document.createElement('section')
+                finalResults.setAttribute('id','victor')
+                body.appendChild(displayVictor)
+        
+                const finalHTML = `
+                <h1>ALL 3 ROUNDS HAVE BEEN PLAYED. ${me.name} had ${me.score} points. ${opponent.name} had ${opponent.score} points. ${opponent.name} wins!</h1>
+                <button id='play-again'>PLAY AGAIN</button>`
+        
+                displayVictor.innerHTML = finalHTML
+        } else if (me.score === opponent.score) {
+            
+                const displayVictor = document.createElement('section')
+                finalResults.setAttribute('id','victor')
+                body.appendChild(displayVictor)
+        
+                const finalHTML = `
+                <h1>ALL 3 ROUNDS HAVE BEEN PLAYED. ${me.name} had ${me.score} points. ${opponent.name} had ${opponent.score} points. IT IS A TIE!</h1>
+                <button id='play-again'>PLAY AGAIN</button>`
+        
+                displayVictor.innerHTML = finalHTML
+        }  
+
+    }
     
     const opponentClear = document.getElementById('opponent-section')
     opponentClear.parentNode.removeChild(opponentClear)
