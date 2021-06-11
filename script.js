@@ -648,6 +648,8 @@ const round2 = () => {
 
     // const gameClear = document.getElementById('main-game')
     // gameClear.parentNode.removeChild(gameClear)
+
+    // if(me.score === ){}
     
     const opponentClear = document.getElementById('opponent-section')
     opponentClear.parentNode.removeChild(opponentClear)
@@ -661,19 +663,19 @@ const round2 = () => {
 const replay = () => {
     // console.log('reaplying the game again')
 
-    me.score = 0
-    opponent.score = 0
-
-     // const gameClear = document.getElementById('main-game')
-    // gameClear.parentNode.removeChild(gameClear)
+    // me.score = 0
+    // opponent.score = 0
     
-    const opponentClear = document.getElementById('opponent-section')
-    opponentClear.parentNode.removeChild(opponentClear)
+    // const opponentClear = document.getElementById('opponent-section')
+    // opponentClear.parentNode.removeChild(opponentClear)
 
-    const resultClear = document.getElementById('final-results')
-    resultClear.parentNode.removeChild(resultClear)
+    // const resultClear = document.getElementById('final-results')
+    // resultClear.parentNode.removeChild(resultClear)
 
-    beginGame()
+    // beginGame()
+
+    window.location.reload()
+
 
 
 }
